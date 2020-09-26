@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Jun 12 19:31:23 2020
-
-@author: root
-прототип, v0.2
+Snake is multiplayer game with bots.
 """
 
 import tkinter as tk
 from random import randint, choice
+
+class Config:
+    """Block for set properties of game"""
+    def __init__(self, master):
+        pass
 
 class Pole:
     def __init__(self, master, width, height, scale, bg='white'):
@@ -263,41 +265,44 @@ class Eat:
 
 
 
+def main():
+
+    root = tk.Tk()
+    root.title('Змеюка')
+    pole = Pole(root, width=80, height=45, scale=20)
+    info = Information(root)
+    #pole.set_snakes(3)
+    pole.set_eats(20)
+
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
+    Snake_bot(pole).search()
 
 
-root = tk.Tk()
-root.title('Змеюка')
-pole = Pole(root, width=80, height=45, scale=20)
-info = Information(root)
-#pole.set_snakes(3)
-pole.set_eats(20)
 
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
-Snake_bot(pole).search()
+    #root.bind('<Left>', lambda event: pole.snakes[0].direct('l'))
+    #root.bind('<Right>', lambda event: pole.snakes[0].direct('r'))
+    #root.bind('<Up>', lambda event: pole.snakes[0].direct('u'))
+    #root.bind('<Down>', lambda event: pole.snakes[0].direct('d'))
+    #
+    #root.bind('a', lambda event: pole.snakes[1].direct('l'))
+    #root.bind('d', lambda event: pole.snakes[1].direct('r'))
+    #root.bind('w', lambda event: pole.snakes[1].direct('u'))
+    #root.bind('s', lambda event: pole.snakes[1].direct('d'))
+    #
+    #root.bind('h', lambda event: pole.snakes[2].direct('l'))
+    #root.bind('k', lambda event: pole.snakes[2].direct('r'))
+    #root.bind('u', lambda event: pole.snakes[2].direct('u'))
+    #root.bind('j', lambda event: pole.snakes[2].direct('d'))
 
+    root.mainloop()
 
-
-#root.bind('<Left>', lambda event: pole.snakes[0].direct('l'))
-#root.bind('<Right>', lambda event: pole.snakes[0].direct('r'))
-#root.bind('<Up>', lambda event: pole.snakes[0].direct('u'))
-#root.bind('<Down>', lambda event: pole.snakes[0].direct('d'))
-#
-#root.bind('a', lambda event: pole.snakes[1].direct('l'))
-#root.bind('d', lambda event: pole.snakes[1].direct('r'))
-#root.bind('w', lambda event: pole.snakes[1].direct('u'))
-#root.bind('s', lambda event: pole.snakes[1].direct('d'))
-#
-#root.bind('h', lambda event: pole.snakes[2].direct('l'))
-#root.bind('k', lambda event: pole.snakes[2].direct('r'))
-#root.bind('u', lambda event: pole.snakes[2].direct('u'))
-#root.bind('j', lambda event: pole.snakes[2].direct('d'))
-
-root.mainloop()
+if __name__ == '__main__':
+    main()
