@@ -6,10 +6,6 @@ Snake is multiplayer game with bots.
 import tkinter as tk
 from random import randint, choice
 
-class Config:
-    """Block for set properties of game"""
-    def __init__(self, master):
-        pass
 
 class Pole:
     def __init__(self, master, width, height, scale, bg='white'):
