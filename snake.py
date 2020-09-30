@@ -257,6 +257,10 @@ class Eat:
         return self.eat.get_coords()
 
 
+def add_bots(pole, numbers):
+    """Add number bots on pole"""
+    for i in range(numbers):
+        Snake_bot(pole).search()
 
 
 
@@ -270,18 +274,7 @@ def main():
     #pole.set_snakes(3)
     pole.set_eats(20)
 
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-    Snake_bot(pole).search()
-
-
+    add_bots(pole, 10)
 
     #root.bind('<Left>', lambda event: pole.snakes[0].direct('l'))
     #root.bind('<Right>', lambda event: pole.snakes[0].direct('r'))
