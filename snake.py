@@ -28,8 +28,21 @@ class Pole:
         return self.scale
 
     def set_snakes(self, num):
+        """ legacy method, replaced method set_snake_bots and set_snake_user
+        with configure snake"""
         for i in range(num):
             self.snakes.append(Snake(self))
+
+    def set_snake_bot(self, num):
+        """Add number bots"""
+        for i in range(num):
+            self.snakes.append(Snake_bot(self))
+        for sn in self.snakes:
+            if sn.typer == 'bot':
+                sn.search()
+
+    def set_snake_user(self, list_com_keys):
+        pass
 
     def set_eats(self, num):
         for i in range(num):
@@ -104,6 +117,9 @@ class Snake:
     def __init__(self, pole):
         self.id = Snake.count                                                   # идентификатор объекта
         Snake.count +=1
+
+        # type snake - bot or user
+        self.typer = 'bot'
 
         self.pole = pole
         self.direction = 'r'
@@ -200,8 +216,9 @@ class Snake:
             el.set_color(color)
 
     def bind_keys(self, left, right, up, down):
-        """Set key for manipulating snake
+        """Set key for manipulating snake and set snake as gamer type
         Key code as used in tkinter"""
+        self.typer = 'user'
         self.pole.master.bind(left, lambda event: self.direct('l'))
         self.pole.master.bind(right, lambda event: self.direct('r'))
         self.pole.master.bind(up, lambda event: self.direct('u'))
@@ -266,13 +283,6 @@ class Eat:
         return self.eat.get_coords()
 
 
-def add_bots(pole, numbers):
-    """Add number bots on pole"""
-    for i in range(numbers):
-        Snake_bot(pole).search()
-
-
-
 
 def main():
 
@@ -280,10 +290,9 @@ def main():
     root.title('Змеюка')
     pole = Pole(root, width=80, height=45, scale=20)
     info = Information(root)
-    pole.set_snakes(1)
     pole.set_eats(20)
 
-    add_bots(pole, 10)
+    pole.set_snake_bot(10)
 
     pole.snakes[0].bind_keys('a', 'd', 'w', 's')
 
