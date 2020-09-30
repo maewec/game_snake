@@ -199,6 +199,15 @@ class Snake:
         for el in self.body:
             el.set_color(color)
 
+    def bind_keys(self, left, right, up, down):
+        """Set key for manipulating snake
+        Key code as used in tkinter"""
+        self.pole.master.bind(left, lambda event: self.direct('l'))
+        self.pole.master.bind(right, lambda event: self.direct('r'))
+        self.pole.master.bind(up, lambda event: self.direct('u'))
+        self.pole.master.bind(down, lambda event: self.direct('d'))
+
+
 class Snake_bot(Snake):
     def search(self):
         xe, ye = self.pole.eats[0].get_coords()
@@ -271,10 +280,12 @@ def main():
     root.title('Змеюка')
     pole = Pole(root, width=80, height=45, scale=20)
     info = Information(root)
-    #pole.set_snakes(3)
+    pole.set_snakes(1)
     pole.set_eats(20)
 
     add_bots(pole, 10)
+
+    pole.snakes[0].bind_keys('a', 'd', 'w', 's')
 
     #root.bind('<Left>', lambda event: pole.snakes[0].direct('l'))
     #root.bind('<Right>', lambda event: pole.snakes[0].direct('r'))
