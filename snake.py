@@ -42,7 +42,13 @@ class Pole:
                 sn.search()
 
     def set_snake_user(self, list_com_keys):
-        pass
+        """Add user snake
+        ---
+        Parameters:
+            list_com_keys - list of key left, rigth, up, down"""
+        left, right, up, down = list_com_keys
+        self.snakes.append(Snake(self))
+        self.snakes[-1].bind_keys(left, right, up, down)
 
     def set_eats(self, num):
         for i in range(num):
@@ -287,29 +293,18 @@ class Eat:
 def main():
 
     root = tk.Tk()
-    root.title('Змеюка')
+    root.title('Snaюка')
+    # Ititialisation game pole with width, height and scale
     pole = Pole(root, width=80, height=45, scale=20)
+    # Add info frame
     info = Information(root)
+    # Set number eats for snake
     pole.set_eats(20)
-
+    # Set number bots of snake
     pole.set_snake_bot(10)
-
-    pole.snakes[0].bind_keys('a', 'd', 'w', 's')
-
-    #root.bind('<Left>', lambda event: pole.snakes[0].direct('l'))
-    #root.bind('<Right>', lambda event: pole.snakes[0].direct('r'))
-    #root.bind('<Up>', lambda event: pole.snakes[0].direct('u'))
-    #root.bind('<Down>', lambda event: pole.snakes[0].direct('d'))
-    #
-    #root.bind('a', lambda event: pole.snakes[1].direct('l'))
-    #root.bind('d', lambda event: pole.snakes[1].direct('r'))
-    #root.bind('w', lambda event: pole.snakes[1].direct('u'))
-    #root.bind('s', lambda event: pole.snakes[1].direct('d'))
-    #
-    #root.bind('h', lambda event: pole.snakes[2].direct('l'))
-    #root.bind('k', lambda event: pole.snakes[2].direct('r'))
-    #root.bind('u', lambda event: pole.snakes[2].direct('u'))
-    #root.bind('j', lambda event: pole.snakes[2].direct('d'))
+    # Add user snake and binding key for manipulating
+    pole.set_snake_user(('a', 'd', 'w', 's'))
+    pole.set_snake_user(('<Left>', '<Right>', '<Up>', '<Down>'))
 
     root.mainloop()
 
