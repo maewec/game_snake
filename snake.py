@@ -27,12 +27,6 @@ class Pole:
     def get_scale(self):
         return self.scale
 
-    def set_snakes(self, num):
-        """ legacy method, replaced method set_snake_bots and set_snake_user
-        with configure snake"""
-        for i in range(num):
-            self.snakes.append(Snake(self))
-
     def set_snake_bot(self, num):
         """Add number bots"""
         for i in range(num):
